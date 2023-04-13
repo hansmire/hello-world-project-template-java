@@ -18,6 +18,7 @@ repositories {
 // @@@SNIPSTART hello-world-project-template-java-gradle-dependencies
 dependencies {
     implementation group: 'io.temporal', name: 'temporal-sdk', version: '1.18.2'
+    implementation group: 'io.temporal', name: 'temporal-remote-data-encoder', version: '1.18.2'
     implementation group: 'org.slf4j',  name: 'slf4j-nop', version: '2.0.6'
     
     testImplementation group: 'io.temporal', name: 'temporal-testing', version: '1.18.2'
@@ -39,6 +40,11 @@ task sayHello(type: JavaExec) {
 
 task startWorker(type: JavaExec) {
     mainClass = 'helloworldapp.HelloWorldWorker'
+    classpath = sourceSets.main.runtimeClasspath
+}
+
+task startServer(type: JavaExec) {
+    mainClass = 'helloworldapp.CodecServer'
     classpath = sourceSets.main.runtimeClasspath
 }
 // @@@SNIPEND

@@ -8,15 +8,12 @@ import io.temporal.worker.WorkerFactory;
 
 public class HelloWorldWorker {
 
-    public static void main(String[] args) {
-
-        // Get a Workflow service stub.
-        WorkflowServiceStubs service = WorkflowServiceStubs.newLocalServiceStubs();
+    public static void main(String[] args) throws Exception {
 
         /*
         * Get a Workflow service client which can be used to start, Signal, and Query Workflow Executions.
         */
-        WorkflowClient client = WorkflowClient.newInstance(service);
+        WorkflowClient client = InitiateHelloWorld.workflowClient(args[0], args[1], args[2]);
 
         /*
         * Define the workflow factory. It is used to create workflow workers that poll specific Task Queues.
